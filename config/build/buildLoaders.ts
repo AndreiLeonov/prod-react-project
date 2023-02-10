@@ -5,6 +5,20 @@ import {BuildOptions} from "./types/config";
 export function buildLoaders({isDev}: BuildOptions): webpack.RuleSetRule[] {
     // порядок лоадеров может иметь значение!!! поэтому лучше выносить их в переменные
     // и подключать в том порядке, в каком это необходимо
+    const svgLoader = {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+    }
+
+    const fileLoader = {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+            {
+                loader: 'file-loader',
+            },
+        ],
+    }
+
     const cssLoader = {
         test: /\.s[ac]ss$/i,
         use: [
@@ -33,6 +47,8 @@ export function buildLoaders({isDev}: BuildOptions): webpack.RuleSetRule[] {
         exclude: /node_modules/, // исключаем node_modules, т.е. говорим, что это обрабатывать в текущем лоадере не нужно
     }
     return [
+        svgLoader,
+        fileLoader,
         typescriptLoader,
         cssLoader
     ]
