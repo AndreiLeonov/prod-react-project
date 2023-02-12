@@ -1,5 +1,5 @@
-import {ResolveOptions} from "webpack";
-import {BuildOptions} from "./types/config";
+import { ResolveOptions } from 'webpack';
+import { BuildOptions } from './types/config';
 
 export function buildResolvers(options: BuildOptions): ResolveOptions {
     // позволяет не писать расширения при импорте у указанных типов
@@ -8,9 +8,9 @@ export function buildResolvers(options: BuildOptions): ResolveOptions {
         preferAbsolute: true, // абсолютные пути в приоритете
         modules: [
             options.paths.src,
-            'node_modules'
+            'node_modules',
         ],
         mainFiles: ['index'], // главный файл (для каждого модуля)
-        alias: {}
-    }
+        alias: {},
+    };
 }

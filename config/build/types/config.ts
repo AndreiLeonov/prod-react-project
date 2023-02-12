@@ -1,4 +1,4 @@
-import webpack from "webpack";
+import webpack from 'webpack';
 
 // export type BuildMode = 'production' | 'development';
 export type BuildMode = webpack.Configuration['mode']
