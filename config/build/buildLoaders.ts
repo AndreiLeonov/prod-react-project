@@ -46,9 +46,29 @@ export function buildLoaders({isDev}: BuildOptions): webpack.RuleSetRule[] {
         use: 'ts-loader',
         exclude: /node_modules/, // исключаем node_modules, т.е. говорим, что это обрабатывать в текущем лоадере не нужно
     }
+    const babelLoader = {
+        test: /\.(js|jsx|ts|tsx)$/,
+        exclude: /node_modules/,
+        use: {
+            loader: "babel-loader",
+            options: {
+                presets: ['@babel/preset-env'],
+                "plugins": [
+                    [
+                        "i18next-extract",
+                        {
+                            locales: ['ru','en'],
+                            keyAsDefaultValue: true,
+                        }
+                    ],
+                ]
+            }
+        }
+    }
     return [
         svgLoader,
         fileLoader,
+        babelLoader,
         typescriptLoader,
         cssLoader
     ]

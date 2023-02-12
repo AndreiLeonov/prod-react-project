@@ -14,3 +14,8 @@ declare module '*.svg' {
     const SVG: React.VFC<React.SVGProps<SVGSVGElement>>;
     export default SVG;
 }
+
+// объявляем переменную глобально, чтобы с помощью
+// new webpack.DefinePlugin({__IS_DEV__: JSON.stringify(isDev)})
+// объявить ее глобально и использовать в файле i18n.ts
+declare const __IS_DEV__: boolean
