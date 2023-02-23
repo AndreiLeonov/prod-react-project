@@ -46,11 +46,25 @@ module.exports = {
         'import/extensions': 'off',
         'import/no-extraneous-dependencies': 'off',
         'no-underscore-dangle': 'off',
-        'i18next/no-literal-string': ['error', { markupOnly: true }],
+        'i18next/no-literal-string': [
+            'error',
+            {
+                markupOnly: true,
+                ignoreAttribute: ['data-testid'], // игонорируем data-testid, тк i18next просит перевод
+            },
+        ],
         // игнорировать нарушение комментами максимальной длины строки
-        'max-len': ['error', { ignoreComments: true }],
+        'max-len': ['error', { ignoreComments: true, code: 100 }],
     },
     globals: {
         __IS_DEV__: true,
     },
+    overrides: [
+        {
+            files: ['**/src/**/*.test.{ts,tsx}'], // выбираем все файлы test.ts / test,tsx
+            rules: {
+                'i18next/no-literal-string': 'off', // и отключаем для них требованием по переводу
+            },
+        },
+    ],
 };
