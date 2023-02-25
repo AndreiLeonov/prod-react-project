@@ -6,9 +6,9 @@ declare module '*.scss' {
     export = classNames;
 }
 
-declare module '*.png'
-declare module '*.jpg'
-declare module '*.jpeg'
+declare module '*.png';
+declare module '*.jpg';
+declare module '*.jpeg';
 declare module '*.svg' {
     import React from 'react';
 
@@ -16,7 +16,4 @@ declare module '*.svg' {
     export default SVG;
 }
 
-// объявляем переменную глобально, чтобы с помощью
-// new webpack.DefinePlugin({__IS_DEV__: JSON.stringify(isDev)})
-// объявить ее глобально и использовать в файле i18n.ts
 declare const __IS_DEV__: boolean;

@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    // то, куда производится сборка, но мы собираем с помощью вебпака, поэтому это в нашем случае неважно
     "outDir": "./dist/",
     // Подсвечивает все места где не указан тип
     // Однако это не означает, что теперь вовсе нельзя использовать any.
@@ -13,6 +12,7 @@
     // Компилятор будет обрабатывать не только TS файлы, но и JS файлы
     "allowJs": true,
     "moduleResolution": "node",
+    // Для абсолютного импорта
     "baseUrl": ".",
     "paths": {
       "*": ["./src/*"]
@@ -33,13 +33,14 @@
     // import React from 'react';
     "allowSyntheticDefaultImports": true
   },
-  //ts-node настройка нужна для того, чтобы вебпак смог собрать сборку при указанном значении module: ESNext - указано в доке Webpack
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"
-    },
-    "include": [
-      "./config/jest/setupTests.ts"
-    ]
-  }
+    }
+  },
+  "include": [
+    "./config/jest/setupTests.ts",
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+  ]
 }

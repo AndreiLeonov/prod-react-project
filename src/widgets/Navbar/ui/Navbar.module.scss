@@ -7,10 +7,10 @@
     padding: 20px;
 }
 
-.Links {
-    :not(:last-child) {
-        margin-right: 10px;
-    }
-
+.links {
     margin-left: auto;
+}
+
+.mainLink {
+    margin-right: 15px;
 }
