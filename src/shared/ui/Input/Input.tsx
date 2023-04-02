@@ -1,17 +1,18 @@
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import React, {
     InputHTMLAttributes,
     memo,
 } from 'react';
 import cls from './Input.module.scss';
 
-// забрать все атрибуты InputHTMLAttributes<HTMLInputElement кроме value, onChange
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>
+// забрать все атрибуты InputHTMLAttributes<HTMLInputElement кроме value, onChange, readOnly
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'| 'readOnly'>
 
 interface IInputProps extends HTMLInputProps {
-    className?:string;
-    value?: string;
-    onChange?: (value: string) => void
+    className?: string;
+    value?: string | number;
+    onChange?: (value: string) => void;
+    readonly?: boolean;
 }
 
 export const Input = memo((props: IInputProps) => {
@@ -21,13 +22,17 @@ export const Input = memo((props: IInputProps) => {
         onChange,
         type = 'text',
         placeholder,
+        readonly,
         ...otherProps
     } = props;
     const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         onChange?.(event.target.value);
     };
+    const mods: Mods = {
+        [cls.readonly]: readonly,
+    };
     return (
-        <div className={classNames(cls.InputWrapper, {}, [className])}>
+        <div className={classNames(cls.InputWrapper, mods, [className])}>
             {
                 placeholder && (
                     <div className={cls.placeholder}>
@@ -40,6 +45,7 @@ export const Input = memo((props: IInputProps) => {
                 type={type}
                 value={value}
                 onChange={onChangeHandler}
+                readOnly={readonly}
                 {...otherProps}
             />
         </div>
