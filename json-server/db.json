@@ -26,9 +26,9 @@
     }
   ],
   "profile": {
-    "fname": "UserTest",
-    "lname": "TestovTest1",
-    "age": 2291,
+    "fname": "test",
+    "lname": "test",
+    "age": 22,
     "currency": "EUR",
     "country": "Scotland",
     "city": "MoscowTest1",

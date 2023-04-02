@@ -2,5 +2,11 @@
   "Профиль": "Profile",
   "Редактировать": "Edit",
   "Имя": "Name",
-  "Фамилия": "Lname"
+  "Фамилия": "Lname",
+  "Серверная ошибка при сохранении": "Unsuccess saving data with server error",
+  "Некорректная страна": "Incorrect country",
+  "Некорректный возраст": "Incorrect age",
+  "Некоректные данные пользователя (имя или фамилия)": "Incorrect user data",
+  "Данные не верны": "no data"
+
 }
