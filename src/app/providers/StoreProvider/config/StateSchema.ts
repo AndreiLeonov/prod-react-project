@@ -3,6 +3,7 @@ import { UserSchema } from 'entities/User';
 import { ProfileSchema } from 'entities/Profile';
 import { ArticleDetailsSchema } from 'entities/Article';
 import { LoginSchema } from 'features/authByUsername';
+import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
 import {
     AnyAction,
     EnhancedStore,
@@ -21,6 +22,7 @@ export interface StateSchema {
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
     articleDetails?: ArticleDetailsSchema;
+    articleDetailsComments?: ArticleDetailsCommentsSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
