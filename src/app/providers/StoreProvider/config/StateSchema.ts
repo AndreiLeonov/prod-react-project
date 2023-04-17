@@ -6,6 +6,7 @@ import { LoginSchema } from 'features/authByUsername';
 import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
 import { AddCommentFormSchema } from 'features/addCommentForm';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
+import { UISchema } from 'features/UI';
 import {
     AnyAction,
     EnhancedStore,
@@ -18,6 +19,7 @@ import { AxiosInstance } from 'axios';
 export interface StateSchema {
     counter: CounterSchema;
     user: UserSchema;
+    ui: UISchema;
     // Асинхронный радюсер:
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
