@@ -1,25 +1,23 @@
-.PrfileCard {
+.ProfileCard {
     padding: 20px;
-    border: 1px solid var(--inverted-bg-color);
-}
-
-.editBtn {
-    margin-left: auto;
+    border: 2px solid var(--inverted-bg-color);
 }
 
 .input {
     margin-top: 10px;
 }
 
-.loading {
+.loading,
+.error {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 300px;
 }
 
-.AvatarWrapper {
+.avatarWrapper {
     display: flex;
+    width: 100%;
     justify-content: center;
 }
 

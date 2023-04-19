@@ -96,12 +96,12 @@ const article = {
 
 export const Big = Template.bind({});
 Big.args = {
-    view: 'BIG',
+    view: ArticleView.BIG,
     article,
 };
 
 export const Small = Template.bind({});
 Small.args = {
-    view: 'SMALL',
+    view: ArticleView.SMALL,
     article,
 };

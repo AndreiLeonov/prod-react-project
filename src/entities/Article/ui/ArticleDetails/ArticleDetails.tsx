@@ -1,21 +1,21 @@
 import { classNames } from 'shared/lib/classNames/classNames';
+import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Text, TextAlign, TextSize } from 'shared/ui/Text/Text';
-import { useTranslation } from 'react-i18next';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
-import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg';
-import EyeIcon from 'shared/assets/icons/eye-20-20.svg';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
+import EyeIcon from 'shared/assets/icons/eye-20-20.svg';
+import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg';
 import { Icon } from 'shared/ui/Icon/Icon';
 import { ArticleCodeBlockComponent } from 'entities/Article/ui/ArticleCodeBlockComponent/ArticleCodeBlockComponent';
 import { ArticleImageBlockComponent } from 'entities/Article/ui/ArticleImageBlockComponent/ArticleImageBlockComponent';
 import { ArticleTextBlockComponent } from 'entities/Article/ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
-import cls from './ArticleDetails.module.scss';
-import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
+import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
+import cls from './ArticleDetails.module.scss';
 import {
     getArticleDetailsData,
     getArticleDetailsError,
@@ -23,7 +23,7 @@ import {
 } from '../../model/selectors/articleDetails';
 import { ArticleBlock, ArticleBlockType } from '../../model/types/article';
 
-interface IArticleDetailsProps {
+interface ArticleDetailsProps {
     className?: string;
     id: string;
 }
@@ -32,7 +32,8 @@ const reducers: ReducersList = {
     articleDetails: articleDetailsReducer,
 };
 
-export const ArticleDetails = memo(({ className, id }: IArticleDetailsProps) => {
+export const ArticleDetails = memo((props: ArticleDetailsProps) => {
+    const { className, id } = props;
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const isLoading = useSelector(getArticleDetailsIsLoading);
@@ -42,11 +43,29 @@ export const ArticleDetails = memo(({ className, id }: IArticleDetailsProps) => 
     const renderBlock = useCallback((block: ArticleBlock) => {
         switch (block.type) {
         case ArticleBlockType.CODE:
-            return <ArticleCodeBlockComponent key={block.id} className={cls.block} block={block} />;
+            return (
+                <ArticleCodeBlockComponent
+                    key={block.id}
+                    block={block}
+                    className={cls.block}
+                />
+            );
         case ArticleBlockType.IMAGE:
-            return <ArticleImageBlockComponent key={block.id} className={cls.block} block={block} />;
+            return (
+                <ArticleImageBlockComponent
+                    key={block.id}
+                    block={block}
+                    className={cls.block}
+                />
+            );
         case ArticleBlockType.TEXT:
-            return <ArticleTextBlockComponent key={block.id} className={cls.block} block={block} />;
+            return (
+                <ArticleTextBlockComponent
+                    key={block.id}
+                    className={cls.block}
+                    block={block}
+                />
+            );
         default:
             return null;
         }
@@ -74,7 +93,7 @@ export const ArticleDetails = memo(({ className, id }: IArticleDetailsProps) => 
         content = (
             <Text
                 align={TextAlign.CENTER}
-                title={t('Произошла ошибка при загрузку статьи.')}
+                title={t('Произошла ошибка при загрузке статьи.')}
             />
         );
     } else {
@@ -94,11 +113,11 @@ export const ArticleDetails = memo(({ className, id }: IArticleDetailsProps) => 
                     size={TextSize.L}
                 />
                 <div className={cls.articleInfo}>
-                    <Icon Svg={EyeIcon} />
+                    <Icon className={cls.icon} Svg={EyeIcon} />
                     <Text text={String(article?.views)} />
                 </div>
                 <div className={cls.articleInfo}>
-                    <Icon Svg={CalendarIcon} />
+                    <Icon className={cls.icon} Svg={CalendarIcon} />
                     <Text text={article?.createdAt} />
                 </div>
                 {article?.blocks.map(renderBlock)}

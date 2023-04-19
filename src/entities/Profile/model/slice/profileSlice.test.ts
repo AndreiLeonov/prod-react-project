@@ -7,9 +7,9 @@ import { Currency } from 'entities/Currency';
 const data = {
     username: 'admin',
     age: 22,
-    country: Country.Russia,
-    lname: 'ulbi tv',
-    fname: 'asd',
+    country: Country.Ukraine,
+    lastname: 'ulbi tv',
+    first: 'asd',
     city: 'asf',
     currency: Currency.USD,
 };
@@ -28,7 +28,7 @@ describe('profileSlice.test', () => {
 
         expect(profileReducer(
             state as ProfileSchema,
-            profileActions.cancelEditProfile(),
+            profileActions.cancelEdit(),
         )).toEqual({
             readonly: true,
             validateErrors: undefined,

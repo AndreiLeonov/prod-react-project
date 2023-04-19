@@ -13,7 +13,7 @@ interface ArticleListItemSkeletonProps {
 export const ArticleListItemSkeleton = memo((props: ArticleListItemSkeletonProps) => {
     const { className, view } = props;
 
-    if (view === 'BIG') {
+    if (view === ArticleView.BIG) {
         return (
             <div className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}>
                 <Card className={cls.card}>

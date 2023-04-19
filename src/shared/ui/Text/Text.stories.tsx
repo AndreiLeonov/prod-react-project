@@ -1,8 +1,8 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
-import { Text, TextSize, TextTheme } from './Text';
 
 export default {
     title: 'shared/Text',
@@ -16,49 +16,49 @@ const Template: ComponentStory<typeof Text> = (args) => <Text {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-    title: 'Text',
-    text: 'Description',
+    title: 'Title lorem ipsun',
+    text: 'Description Description Description Description',
 };
 
 export const Error = Template.bind({});
 Error.args = {
-    title: 'Text',
-    text: 'Description',
+    title: 'Title lorem ipsun',
+    text: 'Description Description Description Description',
     theme: TextTheme.ERROR,
 };
 
-export const WithOnlyTitle = Template.bind({});
-WithOnlyTitle.args = {
-    title: 'Text',
+export const onlyTitle = Template.bind({});
+onlyTitle.args = {
+    title: 'Title lorem ipsun',
 };
 
-export const WithOnlyText = Template.bind({});
-WithOnlyText.args = {
-    text: 'Text',
+export const onlyText = Template.bind({});
+onlyText.args = {
+    text: 'Description Description Description Description',
 };
 
 export const PrimaryDark = Template.bind({});
 PrimaryDark.args = {
-    title: 'Text',
-    text: 'Description',
+    title: 'Title lorem ipsun',
+    text: 'Description Description Description Description',
 };
 PrimaryDark.decorators = [ThemeDecorator(Theme.DARK)];
 
-export const WithOnlyTitleDark = Template.bind({});
-WithOnlyTitleDark.args = {
-    title: 'Text',
+export const onlyTitleDark = Template.bind({});
+onlyTitleDark.args = {
+    title: 'Title lorem ipsun',
 };
-WithOnlyTitleDark.decorators = [ThemeDecorator(Theme.DARK)];
+onlyTitleDark.decorators = [ThemeDecorator(Theme.DARK)];
 
-export const WithOnlyTextDark = Template.bind({});
-WithOnlyTextDark.args = {
-    text: 'Text',
+export const onlyTextDark = Template.bind({});
+onlyTextDark.args = {
+    text: 'Description Description Description Description',
 };
-WithOnlyTextDark.decorators = [ThemeDecorator(Theme.DARK)];
+onlyTextDark.decorators = [ThemeDecorator(Theme.DARK)];
 
-export const PrimaryWithSizeL = Template.bind({});
-PrimaryWithSizeL.args = {
-    title: 'Text',
-    text: 'Description',
+export const SizeL = Template.bind({});
+SizeL.args = {
+    title: 'Title lorem ipsun',
+    text: 'Description Description Description Description',
     size: TextSize.L,
 };

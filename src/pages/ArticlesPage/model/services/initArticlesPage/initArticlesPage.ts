@@ -1,42 +1,42 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
-import { SortOrder } from 'shared/types';
 import { ArticleSortField, ArticleType } from 'entities/Article';
-import { articlesPageActions } from '../../slices/articlePageSlice';
+import { SortOrder } from 'shared/types';
+import { getArticlesPageInited } from '../../selectors/articlesPageSelectors';
+import { articlesPageActions } from '../../slices/articlesPageSlice';
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
-import {
-    getArticlesPageInited,
-} from '../../selectors/articlesPageSelectors';
 
-export const initArticlesPage = createAsyncThunk<void, URLSearchParams, ThunkConfig<string>>(
-    'articlesPage/initArticlesPage',
-    async (searchParams, thunkAPI) => {
-        const { getState, dispatch } = thunkAPI;
-        const inited = getArticlesPageInited(getState());
-        if (!inited) {
-            const orderFromURL = searchParams.get('order') as SortOrder;
-            const sortFromURL = searchParams.get('sort') as ArticleSortField;
-            const searchFromURL = searchParams.get('search');
-            const typeFromURL = searchParams.get('type') as ArticleType;
+export const initArticlesPage = createAsyncThunk<
+    void,
+    URLSearchParams,
+    ThunkConfig<string>
+    >(
+        'articlesPage/initArticlesPage',
+        async (searchParams, thunkApi) => {
+            const { getState, dispatch } = thunkApi;
+            const inited = getArticlesPageInited(getState());
 
-            if (orderFromURL) {
-                dispatch(articlesPageActions.setOrder(orderFromURL));
+            if (!inited) {
+                const orderFromUrl = searchParams.get('order') as SortOrder;
+                const sortFromUrl = searchParams.get('sort') as ArticleSortField;
+                const searchFromUrl = searchParams.get('search');
+                const typeFromUrl = searchParams.get('type') as ArticleType;
+
+                if (orderFromUrl) {
+                    dispatch(articlesPageActions.setOrder(orderFromUrl));
+                }
+                if (sortFromUrl) {
+                    dispatch(articlesPageActions.setSort(sortFromUrl));
+                }
+                if (searchFromUrl) {
+                    dispatch(articlesPageActions.setSearch(searchFromUrl));
+                }
+                if (typeFromUrl) {
+                    dispatch(articlesPageActions.setType(typeFromUrl));
+                }
+
+                dispatch(articlesPageActions.initState());
+                dispatch(fetchArticlesList({}));
             }
-
-            if (sortFromURL) {
-                dispatch(articlesPageActions.setSort(sortFromURL));
-            }
-
-            if (searchFromURL) {
-                dispatch(articlesPageActions.setSearch(searchFromURL));
-            }
-
-            if (typeFromURL) {
-                dispatch(articlesPageActions.setType(typeFromURL));
-            }
-
-            dispatch(articlesPageActions.initState());
-            dispatch(fetchArticlesList({}));
-        }
-    },
-);
+        },
+    );

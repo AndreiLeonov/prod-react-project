@@ -17,7 +17,10 @@
 .articleInfo {
     display: flex;
     align-items: center;
-    gap: 10px;
+}
+
+.icon {
+    margin-right: 8px;
 }
 
 .avatarWrapper {

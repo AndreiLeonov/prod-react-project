@@ -6,9 +6,9 @@ import { validateProfileData } from './validateProfileData';
 const data = {
     username: 'admin',
     age: 22,
-    country: Country.Russia,
-    lname: 'test',
-    fname: 'asd',
+    country: Country.Ukraine,
+    lastname: 'ulbi tv',
+    first: 'asd',
     city: 'asf',
     currency: Currency.USD,
 };
@@ -21,7 +21,7 @@ describe('validateProfileData.test', () => {
     });
 
     test('without first and last name', async () => {
-        const result = validateProfileData({ ...data, fname: '', lname: '' });
+        const result = validateProfileData({ ...data, first: '', lastname: '' });
 
         expect(result).toEqual([
             ValidateProfileError.INCORRECT_USER_DATA,
